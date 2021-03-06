@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'frase.dart';
+import 'entities/frase.dart';
+import 'widgets/card_frase.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -15,23 +16,47 @@ class QuoteList extends StatefulWidget {
 
 //Minha classe State
 class _QuoteListState extends State<QuoteList> {
+
+  //Array de frases, poderia ter puxado do BD...
   List<Frase> frases = [
-    Frase(frase: 'Podia ser melhor...', autor: 'Fernando'),
-    Frase(frase: 'Eu queria poder comprar meu novo notebook', autor: 'Simone'),
-    Frase(frase: 'Quero terminar o bootcamp do Inter', autor: 'Helena'),
-    Frase(frase: 'Quero fazer meus apps em Flutter', autor: 'Jade'),
-    Frase(frase: 'Ainda espero fazer meu app de perguntas e respostas',autor: 'Monza'),
-    Frase(frase: 'Ainda espero fazer o Responder Questões!', autor: 'Sandero')
+    Frase(frase: 'Regra número 1: nunca perca dinheiro. \nRegra número 2: nunca se esqueça da regra número 1.', autor: 'Warren Buffett'),
+    Frase(frase: 'Jamais gaste seu dinheiro antes de você possuí-lo.', autor: 'Thomas Jefferson'),
+    Frase(frase: 'Feito é melhor que perfeito.', autor: 'Allan Peron'),
+    Frase(frase: 'O dinheiro é um mestre terrível, mas um excelente servo.', autor: 'P. T. Barnum'),
+    Frase(frase: 'O risco vem de você não saber o que está fazendo.',autor: 'Warren Buffett'),
+    Frase(frase: 'Seja paciente e ignore modismos. \nFoque no valor e não entre em pânico.', autor: 'Eddy Elfenbein')
   ];
 
-  //List<String> autores = ['Fernando', 'Viel', 'Helena', 'Simone', 'Jade'];
+  /**
+   * Retorna um widget decorado para o meu appbar!
+   */
+  Widget obtemAppBar(){
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Icon(
+          Icons.question_answer,
+          color : Colors.grey[100],
+          size: 20.0,
+        ),
+        SizedBox(width:2),
+        Text(
+          'Aplicativo de frases do Fernando',
+          style: TextStyle(
+            fontSize: 14.0,
+            color: Colors.grey[100],
+          ),
+        ),
+      ],
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        title: Text('Frases2'),
+        title: obtemAppBar(),
         centerTitle: true,
         backgroundColor: Colors.redAccent,
       ),
@@ -39,30 +64,10 @@ class _QuoteListState extends State<QuoteList> {
         //
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
-
-          children: frases.map((frase)=>Text('${frase.frase} - ${frase.autor}')).toList(),
-
-        // children: frases
-        //     .map((frase) => Text(
-        //           '${frase.frase} - ${frase.autor}',
-        //           style: TextStyle(
-        //             //backgroundColor: Colors.blue,
-        //             fontSize: 10.0,
-        //             fontWeight: FontWeight.bold,
-        //             letterSpacing: 2.0,
-        //             color: Colors.grey[600],
-        //             fontFamily: 'Roboto',
-        //           ),
-        //         ))
-        //     .toList(),
-
-        //Este método publicou meu array como uma lista de widgets, cada widget recebeu uma posição do meu array, e há duas formas de fazer isso:
-        //Forma A - children: frases.map((frase)=>Text(frase)).toList();
-
-        //Forma B - children: frases.map((quote) {
-        //   return Text(quote);
-        // }).toList(),
+        children: frases.map((frase) => new CardFrase(frase: frase)).toList(),
       ),
     );
   }
 }
+
+
