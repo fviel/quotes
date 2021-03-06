@@ -64,7 +64,14 @@ class _QuoteListState extends State<QuoteList> {
         //
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: frases.map((frase) => new CardFrase(frase: frase)).toList(),
+        children: frases.map((frase) => new CardFrase(
+          frase: frase,
+          delete:(){
+            setState((){
+              frases.remove(frase);
+            });
+          }
+        )).toList(),
       ),
     );
   }

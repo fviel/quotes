@@ -7,7 +7,8 @@ class CardFrase extends StatelessWidget {
 
   // frase precisa ser final, pois este objeto é stateless, e após criado, não pode ser alterado
   final Frase frase;
-  CardFrase({this.frase});
+  final Function delete;
+  CardFrase({this.frase, this.delete});
 
 
   @override
@@ -18,16 +19,17 @@ class CardFrase extends StatelessWidget {
         padding: const EdgeInsets.all(12.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
+
           children: <Widget>[
             Row(
 
               children: <Widget>[
                 Icon(
                   Icons.announcement,
-                  color : Colors.red[300],
+                  color: Colors.red[300],
                   size: 14.0,
                 ),
-                SizedBox(width:2),
+                SizedBox(width: 2),
                 Text(
                   frase.frase,
                   style: TextStyle(
@@ -46,6 +48,12 @@ class CardFrase extends StatelessWidget {
                 color: Colors.grey[800],
                 letterSpacing: 2.0,
               ),
+            ),
+            SizedBox(height: 8.0),
+            FlatButton.icon(
+                onPressed: delete,
+                label: Text('Delete'),
+                icon: Icon(Icons.delete),
             ),
           ],
         ),
