@@ -3,11 +3,15 @@ import '../entities/frase.dart';
 
 
 ///Widget extraido de dentro de um stateful widget,
+///representa um cartão exibido na tela
 class CardFrase extends StatelessWidget {
 
   // frase precisa ser final, pois este objeto é stateless, e após criado, não pode ser alterado
   final Frase frase;
   final Function delete;
+
+  //só declarei a função para receber como parâmetro lá na main
+  //ou seja, o código dela não está nem nessa classe
   CardFrase({this.frase, this.delete});
 
 
