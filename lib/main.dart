@@ -20,7 +20,7 @@ class _QuoteListState extends State<QuoteList> {
   List<Frase> frases = [
     Frase(
         frase:
-            'Regra número 1: nunca perca dinheiro. \nRegra número 2: nunca se esqueça da regra número 1.',
+            'Regra número 1: nunca perca dinheiro. \nRegra número 2: nunca se esqueça da regra número 1. ',
         autor: 'Warren Buffett'),
     Frase(
         frase: 'Jamais gaste seu dinheiro antes de você possuí-lo.',
